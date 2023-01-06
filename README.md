@@ -2,6 +2,7 @@
 This module provides a `useForm` composable and a bunch of validation rules to deal with forms.
 
 ## Installation
+[nuxt-reatctive-form](https://www.npmjs.com/package/nuxt-reactive-form)
 `npm i nuxt-reactive-form`
 
 ## Usage
