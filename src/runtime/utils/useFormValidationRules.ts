@@ -31,7 +31,7 @@ export const minLength: TValidationRuleWrapper = (params: IValidationRuleParams 
   }
   return (payload: IValidationRulePayload) => {
     const { value } = payload
-    return value.length <= defaultedParams.min || defaultedParams.min === -1 || defaultedParams.message
+    return value.length >= defaultedParams.min || defaultedParams.min === -1 || defaultedParams.message
   }
 }
 
