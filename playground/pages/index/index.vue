@@ -1,27 +1,33 @@
 <script lang="ts" setup>
-import { useForm, required, IStateInit, maxLength, onlyLetters, onlyNumbers, TValidationRuleWrapper, TValidationRule, IValidationRuleParams, IValidationRulePayload } from '#imports'
+import { useReactiveForm, ReactiveFormValidationRules } from '#imports'
 
-const customRule: TValidationRuleWrapper = (params = {}) => {
-  return (payload: IValidationRulePayload) => {
+const {
+  maxLength,
+  required,
+  onlyLetters
+} = ReactiveFormValidationRules
+
+const customRule = (params: { message?: string } = {}) => {
+  return (payload: any) => {
     const { value } = payload
     return value === 'aze' || (params.message ?? 'Nope, this needs to be \'aze\'')
   }
 }
 
-const formStateInit: IStateInit = {
+const formStateInit = {
   name: {
     value: 'Léo',
     reset: 'Mon bonhomme d\'amour',
     validation: [
-      // required({ message: 'Ce champ est obligatoire' }),
-      maxLength(/* { max: 3, message: 'Ce champ ne peut contenir que 3 caractères maximum' } */),
-      // onlyLetters({ message: 'Ce champ ne peut contenir que des lettres minuscules et majuscules' }),
+      required({ message: 'Ce champ est obligatoire' }),
+      maxLength({ max: 3, message: 'Ce champ ne peut contenir que 3 caractères maximum' }),
+      onlyLetters({ message: 'Ce champ ne peut contenir que des lettres minuscules et majuscules' }),
       customRule()
     ]
   }
 }
 
-const form = useForm(formStateInit)
+const form = useReactiveForm(formStateInit)
 
 const {
   state,
@@ -42,7 +48,7 @@ const submit = () => {
 
 <template>
   <div>
-    <h1>useForm development</h1>
+    <h1>useReactiveForm development</h1>
     <div>
       <input
         v-model="state.name.value"

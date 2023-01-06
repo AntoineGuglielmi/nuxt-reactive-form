@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-reactive-form",
-  "version": "1.1.1",
+  "name": "@nuxt/reactive-form",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "exports": {

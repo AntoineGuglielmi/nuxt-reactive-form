@@ -5,17 +5,18 @@ import {
   IState,
   TUseForm,
   IErrorMessages,
-  IStateInitPackage
+  IStateInitPackage,
+  TErrorMessagesPack
 } from '../types/useFormTypes'
 
-const setState = (stateValue: IStateInitPackage) => {
+const setState = (stateValue: IStateInitPackage): Ref => {
   if (typeof stateValue === 'object') {
     return ref(stateValue.value)
   }
   return ref(stateValue)
 }
 
-export const useForm = (stateInit: IStateInit): TUseForm => {
+export const useReactiveForm = (stateInit: IStateInit): TUseForm => {
   const state: IState = {}
   const stateBackup: IState = {}
   const errorMessages: IErrorMessages = {}
@@ -42,12 +43,12 @@ export const useForm = (stateInit: IStateInit): TUseForm => {
       errorMessages[stateKey].value = errorMessages[stateKey].value.filter(item => item !== true)
     }
     const errorMessagesArray = Object.values(errorMessages)
-    return !errorMessagesArray.some((value: Ref<(string|boolean)[]>) => {
+    return !errorMessagesArray.some((value: TErrorMessagesPack) => {
       return value.value.length > 0
     })
   }
 
-  const getError = (key: string): boolean|(string|boolean)[] => {
+  const getError = (key: string): boolean|Array<string|boolean> => {
     return errorMessages[key].value.length > 0 && errorMessages[key].value
   }
 

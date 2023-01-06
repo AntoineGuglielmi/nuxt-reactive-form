@@ -1,7 +1,7 @@
 import { TValidationRuleWrapper, TValidationRule, IValidationRuleParams, IValidationRulePayload } from '../types/useFormTypes'
 
-export const required: TValidationRuleWrapper = (params: IValidationRuleParams = {}): TValidationRule => {
-  const defaultedParams = {
+const required: TValidationRuleWrapper = (params?: IValidationRuleParams): TValidationRule => {
+  const defaultedParams: IValidationRuleParams = {
     message: 'This field is not valid',
     ...params
   }
@@ -11,10 +11,9 @@ export const required: TValidationRuleWrapper = (params: IValidationRuleParams =
   }
 }
 
-export const maxLength: TValidationRuleWrapper = (params: IValidationRuleParams = {}): TValidationRule => {
-  const defaultedParams = {
+const maxLength: TValidationRuleWrapper = (params: IValidationRuleParams = { max: -1 }): TValidationRule => {
+  const defaultedParams: IValidationRuleParams = {
     message: 'This field is not valid',
-    max: -1,
     ...params
   }
   return (payload: IValidationRulePayload) => {
@@ -23,8 +22,8 @@ export const maxLength: TValidationRuleWrapper = (params: IValidationRuleParams 
   }
 }
 
-export const minLength: TValidationRuleWrapper = (params: IValidationRuleParams = {}): TValidationRule => {
-  const defaultedParams = {
+const minLength: TValidationRuleWrapper = (params: IValidationRuleParams = { min: -1 }): TValidationRule => {
+  const defaultedParams: IValidationRuleParams = {
     message: 'This field is not valid',
     min: -1,
     ...params
@@ -35,8 +34,8 @@ export const minLength: TValidationRuleWrapper = (params: IValidationRuleParams 
   }
 }
 
-export const onlyLetters: TValidationRuleWrapper = (params: IValidationRuleParams = {}): TValidationRule => {
-  const defaultedParams = {
+const onlyLetters: TValidationRuleWrapper = (params?: IValidationRuleParams): TValidationRule => {
+  const defaultedParams: IValidationRuleParams = {
     message: 'This field is not valid',
     ...params
   }
@@ -47,8 +46,8 @@ export const onlyLetters: TValidationRuleWrapper = (params: IValidationRuleParam
   }
 }
 
-export const onlyNumbers: TValidationRuleWrapper = (params: IValidationRuleParams = {}): TValidationRule => {
-  const defaultedParams = {
+const onlyNumbers: TValidationRuleWrapper = (params?: IValidationRuleParams): TValidationRule => {
+  const defaultedParams: IValidationRuleParams = {
     message: 'This field is not valid',
     ...params
   }
@@ -57,4 +56,12 @@ export const onlyNumbers: TValidationRuleWrapper = (params: IValidationRuleParam
     const regexp = /^[0-9]*$/
     return (regexp.test(value)) || defaultedParams.message
   }
+}
+
+export const ReactiveFormValidationRules = {
+  required,
+  maxLength,
+  minLength,
+  onlyLetters,
+  onlyNumbers
 }

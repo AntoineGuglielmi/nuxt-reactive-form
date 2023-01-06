@@ -49,24 +49,22 @@ export default defineNuxtModule<ModuleOptions>({
 
     addImports([
       {
-        from: resolve(runtimeDir, 'composables/useForm'),
-        name: 'useForm',
-        as: 'useForm'
+        from: resolve(runtimeDir, 'composables/useReactiveForm'),
+        name: 'useReactiveForm',
+        as: 'useReactiveForm'
       },
-      ...rules.map((rule: string) => {
-        return {
-          name: rule,
-          as: rule,
-          from: resolve(runtimeDir, 'utils/useFormValidationRules')
-        }
-      }),
-      ...types.map((type: string) => {
-        return {
-          name: type,
-          as: type,
-          from: resolve(runtimeDir, 'types/useFormTypes')
-        }
-      })
+      {
+        from: resolve(runtimeDir, 'utils/ReactiveFormValidationRules'),
+        name: 'ReactiveFormValidationRules',
+        as: 'ReactiveFormValidationRules'
+      }
+      // ...rules.map((rule: string) => {
+      //   return {
+      //     name: rule,
+      //     as: rule,
+      //     from: resolve(runtimeDir, 'utils/useFormValidationRules')
+      //   }
+      // })
     ])
   }
 })

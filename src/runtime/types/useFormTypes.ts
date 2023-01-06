@@ -4,13 +4,11 @@ export interface IValidationRuleParams {
   [key: string]: any
 }
 
-export interface IValidationRulePayload {
-  value: any
-}
+export type IValidationRulePayload = Record<string, any>
 
 export type TValidationRule = (payload: IValidationRulePayload) => boolean|string
 
-export type TValidationRuleWrapper = (params: IValidationRuleParams) => TValidationRule
+export type TValidationRuleWrapper = (params?: IValidationRuleParams) => TValidationRule
 
 export type IStateInitPackage = {
   value: any|Ref,
@@ -30,8 +28,10 @@ export interface IStateReset {
   [key: string]: any|Ref
 }
 
+export type TErrorMessagesPack = Ref<Array<string|boolean>>
+
 export interface IErrorMessages {
-  [key: string]: Ref<(string|boolean)[]>
+  [key: string]: TErrorMessagesPack
 }
 
 export type TUseForm = {
@@ -39,5 +39,5 @@ export type TUseForm = {
   errorMessages: IErrorMessages
   resetForm: () => void
   formIsValid: () => boolean
-  getError: (key: string) => boolean|(string|boolean)[]
+  getError: (key: string) => boolean|Array<string|boolean>
 }
