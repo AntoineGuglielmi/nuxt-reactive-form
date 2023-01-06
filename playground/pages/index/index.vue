@@ -4,7 +4,7 @@ import { useReactiveForm, ReactiveFormValidationRules } from '#imports'
 const {
   maxLength,
   required,
-  onlyLetters
+  pattern
 } = ReactiveFormValidationRules
 
 const customRule = (params: { message?: string } = {}) => {
@@ -20,9 +20,8 @@ const formStateInit = {
     reset: 'Mon bonhomme d\'amour',
     validation: [
       required({ message: 'Ce champ est obligatoire' }),
-      maxLength({ max: 3, message: 'Ce champ ne peut contenir que 3 caractères maximum' }),
-      onlyLetters({ message: 'Ce champ ne peut contenir que des lettres minuscules et majuscules' }),
-      customRule()
+      maxLength({ max: 3, message: 'Ce champ ne peut contenir que {max} caractères maximum' }),
+      pattern({ pattern: '/^[0-9]+$/', message: 'Ce champ doit respecter le pattern {pattern}' })
     ]
   }
 }
