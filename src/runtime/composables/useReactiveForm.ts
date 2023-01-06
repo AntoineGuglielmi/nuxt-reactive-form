@@ -7,7 +7,7 @@ import {
   IErrorMessages,
   IStateInitPackage,
   TErrorMessagesPack
-} from '../types/useFormTypes'
+} from '../types/ReactiveFormTypes'
 
 const setState = (stateValue: IStateInitPackage): Ref => {
   if (typeof stateValue === 'object') {

@@ -1,4 +1,4 @@
-import { TValidationRuleWrapper, TValidationRule, IValidationRuleParams, IValidationRulePayload } from '../types/useFormTypes'
+import { TValidationRuleWrapper, TValidationRule, IValidationRuleParams, IValidationRulePayload } from '../types/ReactiveFormTypes'
 
 const required: TValidationRuleWrapper = (params?: IValidationRuleParams): TValidationRule => {
   const defaultedParams: IValidationRuleParams = {
