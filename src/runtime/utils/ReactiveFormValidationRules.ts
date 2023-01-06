@@ -58,10 +58,22 @@ const onlyNumbers: TValidationRuleWrapper = (params?: IValidationRuleParams): TV
   }
 }
 
+const pattern: TValidationRuleWrapper = (params: IValidationRuleParams = { pattern: /^.*$/ }): TValidationRule => {
+  const defaultedParams: IValidationRuleParams = {
+    message: 'This field is not valid',
+    ...params
+  }
+  return (payload: IValidationRulePayload) => {
+    const { value } = payload
+    return (defaultedParams.regexp.test(value)) || defaultedParams.message
+  }
+}
+
 export const ReactiveFormValidationRules = {
   required,
   maxLength,
   minLength,
   onlyLetters,
-  onlyNumbers
+  onlyNumbers,
+  pattern
 }
