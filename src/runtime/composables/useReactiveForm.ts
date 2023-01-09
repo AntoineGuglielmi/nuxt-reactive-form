@@ -38,7 +38,7 @@ export const useReactiveForm = (stateInit: IStateInit): TUseForm => {
       errorMessages[stateKey].value = []
       const { validation: validationRules = [] } = stateInit[stateKey]
       for (const rule of validationRules) {
-        errorMessages[stateKey].value.push(rule({ value: state[stateKey].value }))
+        errorMessages[stateKey].value.push(rule({ value: state[stateKey].value, state }))
       }
       errorMessages[stateKey].value = errorMessages[stateKey].value.filter(item => item !== true)
     }

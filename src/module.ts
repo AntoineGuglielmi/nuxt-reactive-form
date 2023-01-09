@@ -54,8 +54,8 @@ export default defineNuxtModule<ModuleOptions>({
         as: 'useReactiveForm'
       },
       {
-        from: resolve(runtimeDir, 'utils/ReactiveFormValidationRules'),
-        name: 'ReactiveFormValidationRules',
+        from: resolve(runtimeDir, 'utils/ReactiveFormValidationRules/index'),
+        name: '*',
         as: 'ReactiveFormValidationRules'
       }
       // ...rules.map((rule: string) => {
