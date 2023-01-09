@@ -17,8 +17,7 @@ const {
 
 // Or you can create yours
 const onlyThisOrThat = (params?: { message?: string }) => {
-  return (payload: { value: any }) => {
-    const { value } = payload;
+  return ({ value, state }) => {
     return value === 'This' || value === 'That' || params?.message;
   }
 }
