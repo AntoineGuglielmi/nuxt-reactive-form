@@ -2,13 +2,13 @@ import { TValidationRuleWrapper, TValidationRule, IValidationRuleParams, IValida
 
 import { getMessageReplaced } from './getMessageReplaced'
 
-export const onlyNumbers: TValidationRuleWrapper = (params?: IValidationRuleParams): TValidationRule => {
+export const matches: TValidationRuleWrapper = (params: IValidationRuleParams = {}): TValidationRule => {
   const defaultedParams: IValidationRuleParams = {
     message: 'This field is not valid',
     ...params
   }
   return ({ value, state }: IValidationRulePayload) => {
-    const regexp = /^[0-9]*$/
-    return (regexp.test(value)) || getMessageReplaced(defaultedParams)
+    const mustMatch = state[params.matches].value
+    return (mustMatch === value) || getMessageReplaced(defaultedParams)
   }
 }

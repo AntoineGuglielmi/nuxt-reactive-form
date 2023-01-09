@@ -7,8 +7,7 @@ export const maxLength: TValidationRuleWrapper = (params: IValidationRuleParams 
     message: 'This field is not valid',
     ...params
   }
-  return (payload: IValidationRulePayload) => {
-    const { value } = payload
+  return ({ value, state }: IValidationRulePayload) => {
     return value.length <= defaultedParams.max || defaultedParams.max === -1 || getMessageReplaced(defaultedParams)
   }
 }
