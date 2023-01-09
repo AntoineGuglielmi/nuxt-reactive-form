@@ -7,8 +7,7 @@ export const onlyLetters: TValidationRuleWrapper = (params?: IValidationRulePara
     message: 'This field is not valid',
     ...params
   }
-  return (payload: IValidationRulePayload) => {
-    const { value } = payload
+  return ({ value, state }: IValidationRulePayload) => {
     const regexp = /^[A-Za-zÀ-ÖØ-öø-ÿ ]*$/
     return (regexp.test(value)) || getMessageReplaced(defaultedParams)
   }

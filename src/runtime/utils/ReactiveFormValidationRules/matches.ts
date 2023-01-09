@@ -7,8 +7,7 @@ export const matches: TValidationRuleWrapper = (params: IValidationRuleParams = 
     message: 'This field is not valid',
     ...params
   }
-  return (payload: IValidationRulePayload) => {
-    const { value, state } = payload
+  return ({ value, state }: IValidationRulePayload) => {
     const mustMatch = state[params.matches].value
     return (mustMatch === value) || getMessageReplaced(defaultedParams)
   }

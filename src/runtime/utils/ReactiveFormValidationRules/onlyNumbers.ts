@@ -7,8 +7,7 @@ export const onlyNumbers: TValidationRuleWrapper = (params?: IValidationRulePara
     message: 'This field is not valid',
     ...params
   }
-  return (payload: IValidationRulePayload) => {
-    const { value } = payload
+  return ({ value, state }: IValidationRulePayload) => {
     const regexp = /^[0-9]*$/
     return (regexp.test(value)) || getMessageReplaced(defaultedParams)
   }

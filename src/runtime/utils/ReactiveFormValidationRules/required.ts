@@ -7,8 +7,7 @@ export const required: TValidationRuleWrapper = (params?: IValidationRuleParams)
     message: 'This field is not valid',
     ...params
   }
-  return (payload: IValidationRulePayload) => {
-    const { value } = payload
+  return ({ value, state }: IValidationRulePayload) => {
     return (value !== null && value !== '' && value !== undefined) || getMessageReplaced(defaultedParams)
   }
 }
