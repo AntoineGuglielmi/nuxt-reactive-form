@@ -4,7 +4,8 @@ import { useReactiveForm, ReactiveFormValidationRules } from '#imports'
 const {
   maxLength,
   required,
-  pattern
+  pattern,
+  matches
 } = ReactiveFormValidationRules
 
 const customRule = (params: { message?: string } = {}) => {
@@ -19,9 +20,14 @@ const formStateInit = {
     value: 'Léo',
     reset: 'Mon bonhomme d\'amour',
     validation: [
-      required({ message: 'Ce champ est obligatoire' }),
-      maxLength({ max: 3, message: 'Ce champ ne peut contenir que {max} caractères maximum' }),
-      pattern({ pattern: '/^[0-9]+$/', message: 'Ce champ doit respecter le pattern {pattern}' })
+      required()
+    ]
+  },
+  nameRepeat: {
+    value: '',
+    reset: 'Mon bonhomme d\'amour',
+    validation: [
+      matches({ matches: 'name', message: 'Ce champ doit être identique au champ "nom"' })
     ]
   }
 }
@@ -55,6 +61,17 @@ const submit = () => {
       >
       <template v-if="getError('name').length">
         <p v-for="(error, index) in getError('name')" :key="index">
+          {{ error }}
+        </p>
+      </template>
+    </div>
+    <div>
+      <input
+        v-model="state.nameRepeat.value"
+        type="text"
+      >
+      <template v-if="getError('nameRepeat').length">
+        <p v-for="(error, index) in getError('nameRepeat')" :key="index">
           {{ error }}
         </p>
       </template>
