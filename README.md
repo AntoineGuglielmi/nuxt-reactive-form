@@ -48,12 +48,13 @@ const form = useReactiveForm({
 
 });
 
-// Destructure the instance of reactive form
+// Destructure the instance of reactive form.
+// See "useReactiveForm return values" below for more informations
 const {
-  state, // The state you can use in your inputs
-  resetForm, // A function to reset values
-  formIsValid, // A function that returns true or false whether all fields are valid or not
-  getError // A function that returns all error messages for a specific field : getError(fieldKey: string)
+  state,
+  resetForm,
+  formIsValid,
+  getError
 } = form;
 
 const submit = () => {
@@ -111,7 +112,48 @@ const submit = () => {
 
 ```
 
-## Development
-
-- Run `npm run dev:prepare` to generate type stubs.
-- Use `npm run dev` to start [playground](./playground) in development mode.
+## `useReactiveForm` return values
+An instance of `useReactiveForm` returns the following values.
+### `state`
+The current state of form values. It can be used by example in `v-model`:
+```vue
+<input
+  v-model="state.whatever.value"
+>
+```
+### `errorMessages`
+The collection of error messages depending on the validation rules.
+### `resetForm()`
+A method that allows to reset form to initial values or reset values if specified
+in initialization object.
+### `validateState(stateKey: string)`
+A method that allows to validate a specific form value.
+It can be used by example in events:
+```vue
+<input
+  v-model="state.whatever.value"
+  @change="validateState('whatever')"
+>
+```
+### `validateForm()`
+A method that allows to validate all form values.
+### `formIsValid(validate: boolean = false)`
+A method that returns true or false whether all form values are valid or not,
+after validating form by running `validateForm()` whether `validate` is set to `true` or `false`
+(`false` by default).
+### `getError(key: string)`
+A method that returns all error messages for a specific value, or `false` if there isn't any.
+It can be used by example like this:
+```vue
+<input
+  v-model="state.whatever.value"
+  @change="validateState('whatever')"
+>
+<template v-if="getError('lastname')">
+  <p
+    style="color: red"
+    v-for="(error, index) in getError('lastname')"
+    :key="index"
+  >{{ error }}</p>
+</template>
+```
