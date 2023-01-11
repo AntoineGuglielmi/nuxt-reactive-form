@@ -1,6 +1,6 @@
 {
   "name": "nuxt-reactive-form",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build",
-    "dev": "nuxi dev playground",
+    "dev": "nuxi dev playground --port=1234",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
   },
