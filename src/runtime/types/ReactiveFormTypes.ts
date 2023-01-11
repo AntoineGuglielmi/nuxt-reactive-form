@@ -40,6 +40,6 @@ export type TUseForm = {
   resetForm: () => void
   validateState: (stateKey: string) => void
   validateForm: () => void
-  formIsValid: () => boolean
+  formIsValid: (validate: boolean) => boolean
   getError: (key: string) => boolean|Array<string|boolean>
 }
