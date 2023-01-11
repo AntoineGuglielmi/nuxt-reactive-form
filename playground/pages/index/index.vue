@@ -20,7 +20,7 @@ const formStateInit = {
     value: 'Léo',
     reset: 'Mon bonhomme d\'amour',
     validation: [
-      required()
+      maxLength({ max: 3 })
     ]
   },
   nameRepeat: {
@@ -37,6 +37,7 @@ const form = useReactiveForm(formStateInit)
 const {
   state,
   resetForm,
+  validateState,
   formIsValid,
   getError
 } = form
@@ -57,6 +58,7 @@ const submit = () => {
     <div>
       <input
         v-model="state.name.value"
+        @keyup="validateState('name')"
         type="text"
       >
       <template v-if="getError('name').length">
@@ -68,6 +70,7 @@ const submit = () => {
     <div>
       <input
         v-model="state.nameRepeat.value"
+        @keyup="validateState('nameRepeat')"
         type="text"
       >
       <template v-if="getError('nameRepeat').length">

@@ -38,6 +38,8 @@ export type TUseForm = {
   state: IState
   errorMessages: IErrorMessages
   resetForm: () => void
+  validateState: (stateKey: string) => void
+  validateForm: () => void
   formIsValid: () => boolean
   getError: (key: string) => boolean|Array<string|boolean>
 }
