@@ -54,7 +54,8 @@ const {
   state,
   resetForm,
   formIsValid,
-  getError
+  getError,
+  forHasChanged
 } = form;
 
 const submit = () => {
@@ -157,3 +158,5 @@ It can be used by example like this:
   >{{ error }}</p>
 </template>
 ```
+### `formHasChanged`
+A computed returning `true` or `false` whether any form value has changed or not.
