@@ -1,4 +1,7 @@
-import { Ref } from 'vue'
+import {
+  ComputedRef,
+  Ref
+} from 'vue'
 
 export interface IValidationRuleParams {
   [key: string]: any
@@ -42,4 +45,5 @@ export type TUseForm = {
   validateForm: () => void
   formIsValid: (validate?: boolean) => boolean
   getError: (key: string) => boolean|Array<string|boolean>
+  formHasChanged: ComputedRef<boolean>
 }

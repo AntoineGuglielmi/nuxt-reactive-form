@@ -1,4 +1,9 @@
-import { ref, Ref } from 'vue'
+import {
+  ComputedRef,
+  ref,
+  Ref,
+  computed
+} from 'vue'
 
 import {
   IStateInit,
@@ -66,6 +71,12 @@ export const useReactiveForm = (stateInit: IStateInit): TUseForm => {
     return errorMessages[key].value.length > 0 && errorMessages[key].value
   }
 
+  const formHasChanged: ComputedRef<boolean> = computed(() => {
+    return Object.keys(state).some((key: string) => {
+      return state[key].value !== stateBackup[key].value
+    })
+  })
+
   return {
     state,
     errorMessages,
@@ -73,6 +84,7 @@ export const useReactiveForm = (stateInit: IStateInit): TUseForm => {
     resetForm,
     validateForm,
     formIsValid,
-    getError
+    getError,
+    formHasChanged
   }
 }

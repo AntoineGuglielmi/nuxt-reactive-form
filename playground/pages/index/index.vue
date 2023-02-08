@@ -39,7 +39,8 @@ const {
   resetForm,
   validateState,
   formIsValid,
-  getError
+  getError,
+  formHasChanged
 } = form
 
 const submit = () => {
@@ -90,4 +91,5 @@ const submit = () => {
       </button>
     </div>
   </div>
+  <pre>{{ {formHasChanged} }}</pre>
 </template>

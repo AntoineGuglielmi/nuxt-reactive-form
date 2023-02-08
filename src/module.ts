@@ -22,9 +22,9 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
-    if (options.addPlugin) {
-      addPlugin(resolve(runtimeDir, 'plugin'))
-    }
+    // if (options.addPlugin) {
+    //   addPlugin(resolve(runtimeDir, 'plugin'))
+    // }
 
     const rules = [
       'required',
